@@ -1,0 +1,23 @@
+[giggle]
+	main-window-maximized = true
+	main-window-geometry = 0x0+0+0
+	main-window-view = FileView
+	history-view-vpane-position = 359
+	file-view-vpane-position = 393
+	file-view-hpane-position = 184
+[user]
+	email = t.perrier@gmail.com
+	name = Trevor
+[push]
+	default = simple
+[alias]
+	hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ss = status -sb
+	head = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --max-count=10
+[core]
+	editor = vim
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
