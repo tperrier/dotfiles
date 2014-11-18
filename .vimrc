@@ -32,10 +32,11 @@ set foldlevelstart=10
 set foldenable " don't fold files by default on open
 " }}}
 " Plugins {{{
-" NERDTree
+" Set up Pathogen
 call pathogen#infect()
 call pathogen#helptags()
 
+" NERDTree
 map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " }}}
