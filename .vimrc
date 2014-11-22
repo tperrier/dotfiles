@@ -3,6 +3,7 @@
 syntax enable " enable syntax processing
 set t_Co=256 " enable 256 color
 colorscheme vividchalk
+hi Normal ctermbg=none " no background for vim
 " }}}
 " Scapses & Tabs {{{
 set tabstop=4

@@ -16,3 +16,9 @@
 [submodule ".vim/bundle/matchit"]
 	path = .vim/bundle/matchit
 	url = git@github.com:tmhedberg/matchit.git
+[submodule ".vim/bundle/VOoM"]
+	path = .vim/bundle/VOoM
+	url = git@github.com:vim-voom/VOoM.git
+[submodule ".vim/bundle/vim-orgmode"]
+	path = .vim/bundle/vim-orgmode
+	url = git@github.com:jceb/vim-orgmode.git
