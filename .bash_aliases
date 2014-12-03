@@ -1,5 +1,6 @@
 alias ping='ping -c 4'
 alias bc='bc -ql'
+alias tmux='tmux -2'
 alias go='gnome-open'
 alias cal3='cal -3'
 alias ls='ls -a --color'

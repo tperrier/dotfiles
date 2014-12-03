@@ -28,3 +28,9 @@
 [submodule ".vim/bundle/vim-speeddating"]
 	path = .vim/bundle/vim-speeddating
 	url = git@github.com:tpope/vim-speeddating.git
+[submodule ".vim/bundle/vim-notes"]
+	path = .vim/bundle/vim-notes
+	url = git@github.com:xolox/vim-notes.git
+[submodule ".vim/bundle/vim-misc"]
+	path = .vim/bundle/vim-misc
+	url = git@github.com:xolox/vim-misc.git

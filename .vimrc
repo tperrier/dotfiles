@@ -3,12 +3,16 @@
 " Set the filetype stuff to off, required for Pathogen
 filetype off
 filetype plugin indent off
-
-execute pathogen#infect()
 call pathogen#helptags()
 
 " You can now turn it on again
 filetype on
+" }}}
+" Genearl Settings {{{
+set nocompatible " Fixs bugs -> like arrows making A B C D
+set hidden " allow unsaved buffers
+set nobackup
+set noswapfile
 " }}}
 " Colors {{{
 syntax on " enable syntax processing
@@ -25,6 +29,7 @@ set shiftwidth=2 " columns for indenting >> <<
 set expandtab " replace spaces for tab
 filetype indent plugin on
 set autoindent
+set copyindent
 " }}}
 "UI Layout {{{
 set number  "show line numbers
@@ -33,9 +38,7 @@ set wildmenu  " visual autocomplete for command menu
 set wildignore=*.pyc,*~
 set showmatch " highlight matching bracket
 set modeline " read modeline from files vim: options
-set nocompatible " Fixs bugs -> like arrows making A B C D
 set list listchars=tab:»·,eol:¶,trail:·,extends:⇒,precedes:⇐ " characters for whitespace
-set nowrap " No line wraping by default
 " }}}
 " Searching {{{
 " set ignorecase " ignore case when searching
@@ -65,13 +68,11 @@ set foldenable " don't fold files by default on open
 " }}}
 " Plugins {{{
 
-" VimOrganizer
-" au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
-" au BufEnter *.org call org#SetOrgFileType()
-
 " NERDTree
 map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" vim-notes
+let g:notes_directories = ['~/Documents/Notes']
 " }}}
 " vim: foldmethod=marker:foldlevel=0
