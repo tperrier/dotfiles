@@ -1,0 +1,21 @@
+[ui]
+username = Trevor Perrier <tperrier@cs>
+editor = vim
+ignore = ~/.hgignore
+ssh = ssh -C
+
+[pager]
+pager = LESS='FSRX' less
+attend = help, cat, diff, glog, log, incoming, outgoing, lg, show, lga, blame, hist
+[alias]
+head = log --limit 10 --style compact --graph
+hist = log --style compact --graph
+
+[extensions]
+strip =
+color =
+pager =
+rebase =
+purge =
+shelve =
+progress =
