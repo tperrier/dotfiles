@@ -1,6 +1,7 @@
 alias ping='ping -c 4'
 alias bc='bc -ql'
 alias tmux='tmux -2'
+alias we='ansiweather'
 alias go='gnome-open'
 alias cal3='cal -A2'
 alias ls='ls -a --color'
@@ -23,6 +24,7 @@ qc () { echo $1 | bc; }
 
 # Add ** globstar
 shopt -s globstar
+shopt -s dotglob
 
 #auto-chooses the first completion an cycles through them w/ tab
 bind '"\t":menu-complete'
