@@ -32,6 +32,7 @@ bind '"\t":menu-complete'
 #exports
 export DEFAULT_CHEAT_DIR=$HOME/.packages/source/cheat/cheatsheets/
 export EDITOR=vim
+export PYTHONSTARTUP=~/.pystartup
 
 #viteralenv wrapper
 export WORKON_HOME=$HOME/Documents/Code/Python/.venv
