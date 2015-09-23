@@ -21,6 +21,8 @@ alias _ps='ps -e --sort=-rss | head -n 15'
 PS1="\[\e[1;32m\]\u@\h:\w\[\e[m\]\n\[\e[1;34m\]\A \$>\[\e[0m\] "
 
 qc () { echo $1 | bc; }
+# npm exec function
+npmx () { $(npm bin)/$@; }
 
 # Add ** globstar
 shopt -s globstar
