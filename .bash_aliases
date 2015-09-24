@@ -20,13 +20,23 @@ alias _ps='ps -e --sort=-rss | head -n 15'
 #Change command prompt
 PS1="\[\e[1;32m\]\u@\h:\w\[\e[m\]\n\[\e[1;34m\]\A \$>\[\e[0m\] "
 
+###########################
+# Custom Functions
+###########################
 qc () { echo $1 | bc; }
 # npm exec function
 npmx () { $(npm bin)/$@; }
+# cd up by n
+# From: http://superuser.com/questions/449687/using-cd-to-go-up-multiple-directory-levels/449705#449705
+cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
+alias 'cd..'='cd_up'
 
 # Add ** globstar
 shopt -s globstar
 shopt -s dotglob
+
+# Verifiy History
+shopt -s histverify
 
 #auto-chooses the first completion an cycles through them w/ tab
 bind '"\t":menu-complete'
@@ -35,6 +45,7 @@ bind '"\t":menu-complete'
 export DEFAULT_CHEAT_DIR=$HOME/.packages/source/cheat/cheatsheets/
 export EDITOR=vim
 export PYTHONSTARTUP=~/.pystartup
+export CDPATH=.:~/Documents/Code:~
 
 #viteralenv wrapper
 export WORKON_HOME=$HOME/Documents/Code/Python/.venv
@@ -47,4 +58,9 @@ alias ck='~/.packages/source/Checkvist/inbox.py'
 #bash_colors contains long string to formate ls output colors
 if [ -f ~/.ls_colors ]; then
     . ~/.ls_colors
+fi
+
+# cd history stack
+if [ -f ~/.packages/bin/acd_func.sh ]; then
+    . ~/.packages/bin/acd_func.sh 
 fi
