@@ -7,7 +7,8 @@ alias cal3='cal -A2'
 alias ls='ls -a --color'
 alias lg='ls -lh | grep'
 alias ll='ls -lh'
-alias wgetFF='wget --referer="http://www.google.com" --user-agent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/3.6.3.0" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Encoding: gzip,deflate" --header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300"'
+alias xclip='xclip -selection c'
+alias xm='xmodmap ~/.Xmodmap'
 
 #quick find
 alias h="history|grep"
@@ -56,11 +57,11 @@ source /usr/local/bin/virtualenvwrapper.sh
 alias ck='~/.packages/source/Checkvist/inbox.py'
 
 #bash_colors contains long string to formate ls output colors
-if [ -f ~/.ls_colors ]; then
-    . ~/.ls_colors
+if [ -f "$HOME/.ls_colors" ]; then
+    . "$HOME/.ls_colors"
 fi
 
 # cd history stack
-if [ -f ~/.packages/bin/acd_func.sh ]; then
-    . ~/.packages/bin/acd_func.sh 
+if [ -f "$HOME/.packages/bin/acd_func.sh" ]; then
+    source "$HOME/.packages/bin/acd_func.sh"
 fi
