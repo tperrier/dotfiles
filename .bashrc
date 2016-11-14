@@ -102,4 +102,5 @@ if [ -d "$HOME/.packages/bin" ] ; then
 	PATH="$HOME/.packages/bin:$PATH"
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" #Load rvm in as function

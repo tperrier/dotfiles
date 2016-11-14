@@ -4,11 +4,15 @@ alias tmux='tmux -2'
 alias we='ansiweather'
 alias go='gnome-open'
 alias cal3='cal -A2'
-alias ls='ls -a --color'
-alias lg='ls -lh | grep'
-alias ll='ls -lh'
+alias ls='ls -A --color'
+alias lg='ls -Alh | grep'
+alias ll='ls -Alh'
+alias less='less -r'
 alias xclip='xclip -selection c'
 alias xm='xmodmap ~/.Xmodmap'
+alias nm='sudo killall NetworkManager'
+alias atom='atom --disable-gpu-compositing'
+alias hsource='/usr/bin/highlight'
 
 #quick find
 alias h="history|grep"
@@ -51,7 +55,8 @@ export CDPATH=.:~/Documents/Code:~
 #viteralenv wrapper
 export WORKON_HOME=$HOME/Documents/Code/Python/.venv
 export PROJECT_HOME=$HOME/Documents/Code/Python
-source /usr/local/bin/virtualenvwrapper.sh
+#source /usr/local/bin/virtualenvwrapper.sh
+source $(pew shell_config)
 
 #custom commands
 alias ck='~/.packages/source/Checkvist/inbox.py'
