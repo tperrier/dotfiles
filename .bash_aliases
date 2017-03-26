@@ -47,7 +47,6 @@ shopt -s histverify
 bind '"\t":menu-complete'
 
 #exports
-export DEFAULT_CHEAT_DIR=$HOME/.packages/source/cheat/cheatsheets/
 export EDITOR=vim
 export PYTHONSTARTUP=~/.pystartup
 export CDPATH=.:~/Documents/Code:~
