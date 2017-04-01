@@ -13,6 +13,7 @@ alias xm='xmodmap ~/.Xmodmap'
 alias nm='sudo killall NetworkManager'
 alias atom='atom --disable-gpu-compositing'
 alias hsource='/usr/bin/highlight'
+alias jupyter='pew in scipy jupyter'
 
 #quick find
 alias h="history|grep"

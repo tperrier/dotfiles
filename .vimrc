@@ -1,15 +1,40 @@
 " Trevor Perrier .vimrc
-" Set up Pathogen {{{
-" Set the filetype stuff to off, required for Pathogen
-filetype off
-filetype plugin indent off
-execute pathogen#infect()
-call pathogen#helptags()
 
-" You can now turn it on again
-filetype on
-filetype indent plugin on
-" }}}
+" Switching from Pathogen to vim-plug: 2017-03-31
+" begin vim-plug section
+" Directions are here: https://github.com/junegunn/vim-plug.
+" To install vim-plug 
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" " This section is for vim-plug managed plugins.
+" " :PlugInstall to install them.
+"
+call plug#begin('~/.vim/plugged')
+
+" file browser on the left
+Plug 'scrooloose/nerdtree'
+" surround things with other things
+Plug 'tpope/vim-surround'
+
+" Allow . repeating using vim-surround
+Plug 'tpope/vim-repeat'
+
+" Commenting with gc{motion}
+Plug 'tomtom/tcomment_vim'
+
+" Auto-conversion to snake, camel, mixed, upper  case with crs, crc, crm, cru
+Plug 'tpope/vim-abolish'
+
+" more sane regex
+Plug 'nelstrom/vim-visual-star-search'
+
+" Better markdown support
+Plug 'plasticboy/vim-markdown'
+
+" Add plugins to &runtimepath
+call plug#end()
+" end vim-plug section
+
+
 " Genearl Settings {{{
 set nocompatible " Fixs bugs -> like arrows making A B C D
 set hidden " allow unsaved buffers

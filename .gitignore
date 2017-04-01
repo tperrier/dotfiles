@@ -1,5 +1,6 @@
 /*
 .vim/ignore/
+.vim/.*
 !.tmux.conf
 !.vimrc
 !.bashrc
