@@ -1,9 +1,9 @@
 alias ping='ping -c 4'
 alias bc='bc -ql'
 alias tmux='tmux -2'
-alias we='ansiweather'
-alias go='gnome-open'
-alias cal3='cal -A2'
+alias cal='cal -B1 -A1'
+alias year='cal -B7 -A7'
+alias cyear='cal -A2 `date +%Y`'
 alias ls='ls -A --color'
 alias lg='ls -Alh | grep'
 alias ll='ls -Alh'
@@ -19,7 +19,7 @@ alias jupyter='pew in scipy jupyter'
 alias h="history|grep"
 alias f="find .|grep"
 alias p="ps aux | grep"
-alias o="gnome-open"
+alias o="xdg-open"
 
 alias _ps='ps -e --sort=-rss | head -n 15'
 
