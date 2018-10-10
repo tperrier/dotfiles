@@ -14,3 +14,11 @@
 !.pystartup
 !.Xmodmap
 !.dotconf
+
+!.packages/
+.packages/*
+!.packages/bin/
+.packages/bin/*
+!.packages/bin/tmux-select-pane
+!.packages/bin/rs
+
