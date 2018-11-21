@@ -11,19 +11,28 @@ def convert_input(input):
         return int(input)
     except ValueError as e:
         input = str(input).lower()
-        return {'s':20,
-                'm':38,
-                'd':78,
-                'n':100,
-                'h':130
+        return {'s':k_to_p(3000),
+                'm':k_to_p(3750),
+                'd':k_to_p(5500),
+                'n':k_to_p(6500),
+                'h':k_to_p(7500)
                 }.get(input[0],100)
 
-def scale_input(input):
-    if input < 0:
-        input = 0
-    elif input > 130:
-        input = 130
-    return 2000 + input*45
+# Redshift takes a value in k with 3000 - 4000 being low and 6500 being nutural.
+# This function maps 0 - 100 -> 2000 - 6500
+def p_to_k(precent):
+    if precent < 0:
+        precent = 0
+    elif precent > 130:
+        precent = 130
+    return int(2000 + precent*45)
+
+def k_to_p(k):
+    if k < 2000:
+        k = 2000
+    elif k > 7850:
+        k = 7850
+    return (k - 2000) / 45.0 
 
 parser = argparse.ArgumentParser(description = "Use Redshift to change temperature")
 parser.add_argument('-r','--raw',action='store_true',default=False,help='use raw temperature value')
@@ -36,7 +45,7 @@ args = parser.parse_args()
 if args.raw is True:
     args.value = int(args.arg)
 else:
-    args.value = scale_input( convert_input(args.arg) )
+    args.value = p_to_k( convert_input(args.arg) )
 
 print "Input: {0.arg} Setting Temperature: {0.value}".format(args)
 os.system("redshift -O {}".format(args.value))
