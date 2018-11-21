@@ -63,7 +63,7 @@ hi Normal ctermbg=none " no background for vim
 hi LineNr ctermbg=none "no background for line numbers
 hi Folded ctermbg=41 ctermfg=22 " Dark green folding
 " }}}
-" Scapses & Tabs {{{
+" Spaces & Tabs {{{
 set tabstop=2
 set softtabstop=2 " columns for tab in insert mode
 set shiftwidth=2 " columns for indenting >> <<
@@ -107,3 +107,42 @@ set foldmethod=indent " fold based on indent level
 set foldlevelstart=10
 set foldenable " don't fold files by default on open
 " }}}
+" Buffer Management{{{
+nnoremap <Leader>l :ls<CR>:b 
+nnoremap <Leader>p :bp<CR>
+nnoremap <Leader>n :bn<CR>
+nnoremap <Leader>b :b#<CR>
+" }}}
+"
+
+" Automatically change the statusline color depending on mode
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
+  elseif a:mode == 'r'
+    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+  else
+    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guibg=Green ctermfg=2 guifg=Black ctermbg=0
+
+" default the statusline to green when entering Vim
+hi statusline guibg=Green ctermfg=2  guifg=Black ctermbg=0
+
+
+" Formats the statusline
+set laststatus=2
+set statusline=[%n]\ %f                           " file name
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}]\  "file format
+set statusline+=%y\      "filetype
+set statusline+=%h\      "help file flag
+set statusline+=%m\      "modified flag
+set statusline+=%r\     "read only flag
+
+set statusline+=\ %=                        " align left
+set statusline+=\ [%3.b][0x%3.B]\               " ASCII and byte code under cursor
+set statusline+=%2.c:%l/%L\ [%3.p%%]            " line X of Y [percent of file]
