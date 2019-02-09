@@ -6,7 +6,7 @@ alias year='cal -B7 -A7'
 alias cyear='cal -A2 `date +%Y`'
 alias ls='ls -A --color'
 alias lg='ls -Alh | grep'
-alias lh='ls -lht | head -n 15'
+alias lh='ls -lht 2>/dev/null | head -n 7'
 alias ll='ls -lht | less'
 alias less='less -r'
 alias xclip='xclip -selection c'
@@ -15,6 +15,7 @@ alias nm='sudo killall NetworkManager'
 alias atom='atom --disable-gpu-compositing'
 alias hsource='/usr/bin/highlight'
 alias jupyter='pew in scipy jupyter'
+alias jupyter3='pew in scipy3 jupyter'
 
 #quick find
 alias h="history|grep"
