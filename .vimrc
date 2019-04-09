@@ -85,6 +85,7 @@ set showmatch " highlight matching bracket
 set modeline " read modeline from files vim: options
 set list listchars=tab:»·,eol:¶,trail:·,extends:⇒,precedes:⇐ " characters for whitespace
 set nomousehide "don't hide the mouse cursor in gvim
+set mouse=a "enable mouse support
 set so=7 " Set 7 lines to the cursor - when moving vertically using j/k
 map q: <Nop> 
 " }}}

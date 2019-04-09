@@ -14,9 +14,14 @@ alias xm='xmodmap ~/.Xmodmap'
 alias nm='sudo killall NetworkManager'
 alias atom='atom --disable-gpu-compositing'
 alias hsource='/usr/bin/highlight'
-alias jupyter='pew in scipy jupyter'
-alias jupyter3='pew in scipy3 jupyter'
+alias jupyter='pew in scipy3 jupyter'
+alias jupyter2='pew in scipy jupyter'
 
+###########################
+# Docker Aliases
+alias dk='sudo docker'
+
+###########################
 #quick find
 alias h="history|grep"
 alias f="find .|grep"

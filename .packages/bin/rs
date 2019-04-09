@@ -4,6 +4,8 @@
 
 import argparse
 import os
+import subprocess
+import sys
 
 def convert_input(input):
     """ Convert command line argument to sct input """
@@ -37,10 +39,28 @@ def k_to_p(k):
 parser = argparse.ArgumentParser(description = "Use Redshift to change temperature")
 parser.add_argument('-r','--raw',action='store_true',default=False,help='use raw temperature value')
 parser.add_argument('arg',default='normal',
-    help = "int in range (10 - 100) (s)mok , (m)ars , (d)ay, (n)ormal, (h)igh"
+    help = "int in range (10 - 100) (s)mok , (m)ars , (d)ay, (n)ormal, (h)igh (g)ray"
 )
 
 args = parser.parse_args()
+
+if args.arg.lower()[0] == 'g':
+    # Get current value of grayscale to toggle
+    print 'Toggle Grayscale'
+    kwinrc_file = '/home/tperrier/.config/kwinrc'
+    cmd_args = '--file {} --group Plugins --key kwin4_effect_grayscaleEnabled'.format(kwinrc_file)
+    cur_state = subprocess.check_output(['kreadconfig {}'.format(cmd_args)],shell=True).strip()
+    gray_scale_cmd = 'kwriteconfig {}  "{{}}"'.format(cmd_args)
+    if cur_state == 'true': # turn gray scale off
+        os.system(gray_scale_cmd.format('false'))
+        os.system('qdbus org.kde.KWin /KWin reconfigure')
+        os.system('qdbus org.kde.KWin /Compositor suspend')
+        os.system('qdbus org.kde.KWin /Compositor resume')
+    else:
+        os.system(gray_scale_cmd.format('true'))
+        os.system('qdbus org.kde.KWin /KWin reconfigure')
+    sys.exit(0)
+
 
 if args.raw is True:
     args.value = int(args.arg)
