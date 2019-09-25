@@ -10,12 +10,11 @@ alias lh='ls -lht 2>/dev/null | head -n 7'
 alias ll='ls -lht | less'
 alias less='less -r'
 alias xclip='xclip -selection c'
-alias xm='xmodmap ~/.Xmodmap'
-alias nm='sudo killall NetworkManager'
 alias atom='atom --disable-gpu-compositing'
 alias hsource='/usr/bin/highlight'
 alias jupyter='pew in scipy3 jupyter'
 alias jupyter2='pew in scipy jupyter'
+alias tx='pew in todo3 todotxt-machine'
 
 ###########################
 # Docker Aliases
@@ -53,6 +52,8 @@ shopt -s histverify
 
 #auto-chooses the first completion an cycles through them w/ tab
 bind '"\t":menu-complete'
+bind '"\e[Z": menu-complete-backward'
+bind '"\C-q":complete'
 
 #exports
 export EDITOR=vim
