@@ -1,0 +1,18 @@
+#!/bin/bash
+mem_total=`free -m | grep Mem: | tr -s ' ' | cut -d ' ' -f 2`
+mem_used=`free -m  | grep Mem: | tr -s ' ' | cut -d ' ' -f 3`
+swap_fields=`free -m | grep Swap: | tr -s ' ' | cut -d ' ' -f 2,3`
+
+mem_precent=$(awk "BEGIN {printf \"%i\", $mem_used*100/$mem_total}")
+mem_used=$(awk "BEGIN {printf \"%.1f\",$mem_used/1024}")
+
+#swap_total=`echo $swap_fields | cut -d ' ' -f 1`
+#swap_used=`echo $swap_fields | cut -d ' ' -f 2`
+#swap_precent=$(awk "BEGIN {printf \"%i\", $swap_used*100/$swap_total}")
+#swap_used=$(awk "BEGIN {printf \"%.1f\",$swap_used/1024}")
+
+# BAT_PATH='/sys/class/power_supply/BAT0'
+# BAT_FULL=`cat $BAT_PATH/charge_full_design`
+# BAT_NOW=`cat $BAT_PATH/charge_now`
+# BAT=$(( 100*$BAT_NOW/$BAT_FULL ))
+echo "M:$mem_used($mem_precent)"
