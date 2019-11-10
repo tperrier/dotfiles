@@ -1,0 +1,68 @@
+#!/usr/bin/python3
+# vim: syntax=python
+
+
+import argparse
+import logging
+import subprocess
+
+
+class TmuxHelper():
+
+    @staticmethod
+    def get_sessions():
+        sessions =  subprocess.check_output(['tmux', 'list-sessions', '-F', '#{session_name}'])
+        sessions = sessions.decode('utf-8')
+        return sessions.strip().split('\n')
+    
+    @staticmethod
+    def start_session(session_name):
+        subprocess.run(['tmux', 'new', '-s', session_name])
+
+
+class SessionHelper():
+
+    _DEFAULT_PREFIX = 'tmx'
+
+    @staticmethod
+    def get_session_number(name):
+        return int(name.split(' ')[1])
+
+    @classmethod
+    def make_session_name(cls,number):
+        return f'{cls._DEFAULT_PREFIX} {number}'
+    
+    @classmethod
+    def is_session(cls,name):
+        return name.startswith(cls._DEFAULT_PREFIX)
+
+    @staticmethod
+    def find_next_session_number(session_list):
+        for idx , name in enumerate(session_list):
+            logging.debug(f'{idx}: {name}')
+            if SessionHelper.get_session_number(name) - 1 > idx:
+                return idx + 1
+        return len(session_list) + 1
+
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--start','-s',action='store_true',default=False)
+    args = parser.parse_args()
+
+    logging.basicConfig(level=logging.WARNING if args.start else logging.DEBUG)
+
+    session_list =  TmuxHelper.get_sessions()
+    session_list = [s for s in session_list if SessionHelper.is_session(s)]
+
+    logging.debug(f'{session_list}')
+
+    session_number = SessionHelper.find_next_session_number(session_list)
+    session_name = SessionHelper.make_session_name(session_number)
+
+    if args.start:
+        TmuxHelper.start_session(session_name)
+    else:
+        logging.debug(f'Make session: {session_name}')
+

@@ -22,4 +22,5 @@
 !.packages/bin/tmux-select-pane
 !.packages/bin/tmux-mem
 !.packages/bin/rs
+!.packages/bin/new-tmux-default-session
 
