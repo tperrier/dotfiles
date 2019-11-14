@@ -11,7 +11,10 @@ class TmuxHelper():
 
     @staticmethod
     def get_sessions():
-        sessions =  subprocess.check_output(['tmux', 'list-sessions', '-F', '#{session_name}'])
+        try:
+            sessions =  subprocess.check_output(['tmux', 'list-sessions', '-F', '#{session_name}'])
+        except subprocess.CalledProcessError as e:
+            return []
         sessions = sessions.decode('utf-8')
         return sessions.strip().split('\n')
     
