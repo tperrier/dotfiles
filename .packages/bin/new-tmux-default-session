@@ -12,7 +12,8 @@ class TmuxHelper():
     @staticmethod
     def get_sessions():
         try:
-            sessions =  subprocess.check_output(['tmux', 'list-sessions', '-F', '#{session_name}'])
+            sessions =  subprocess.check_output(['tmux', '-2', 'list-sessions',
+                '-F', '#{session_name}'])
         except subprocess.CalledProcessError as e:
             return []
         sessions = sessions.decode('utf-8')
@@ -25,25 +26,27 @@ class TmuxHelper():
 
 class SessionHelper():
 
-    _DEFAULT_PREFIX = 'tmx'
 
-    @staticmethod
-    def get_session_number(name):
-        return int(name.split(' ')[1])
+    def __init__(self,prefix='tmx'):
+        self.prefix = prefix
 
-    @classmethod
-    def make_session_name(cls,number):
-        return f'{cls._DEFAULT_PREFIX} {number}'
-    
-    @classmethod
-    def is_session(cls,name):
-        return name.startswith(cls._DEFAULT_PREFIX)
+    def get_session_number(self,name):
+        return int(name.split('_')[1])
 
-    @staticmethod
-    def find_next_session_number(session_list):
+    def make_session_name(self,number):
+        return f'{self.prefix}_{number}'
+
+    def is_session(self,name):
+        return name.startswith(self.prefix)
+
+    def find_next_session_number(self,session_list=None):
+        if session_list is None:
+            session_list =  TmuxHelper.get_sessions()
+            session_list = [s for s in session_list if session_helper.is_session(s)]
+            logging.debug(f'{session_list}')
         for idx , name in enumerate(session_list):
             logging.debug(f'{idx}: {name}')
-            if SessionHelper.get_session_number(name) - 1 > idx:
+            if self.get_session_number(name) - 1 > idx:
                 return idx + 1
         return len(session_list) + 1
 
@@ -52,17 +55,14 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--start','-s',action='store_true',default=False)
+    parser.add_argument('--prefix','-p',default='tmx',help='default prefix (tmx)')
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.WARNING if args.start else logging.DEBUG)
+    session_helper = SessionHelper(args.prefix)
 
-    session_list =  TmuxHelper.get_sessions()
-    session_list = [s for s in session_list if SessionHelper.is_session(s)]
-
-    logging.debug(f'{session_list}')
-
-    session_number = SessionHelper.find_next_session_number(session_list)
-    session_name = SessionHelper.make_session_name(session_number)
+    session_number = session_helper.find_next_session_number()
+    session_name = session_helper.make_session_name(session_number)
 
     if args.start:
         TmuxHelper.start_session(session_name)
