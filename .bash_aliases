@@ -55,6 +55,10 @@ bind '"\t":menu-complete'
 bind '"\e[Z": menu-complete-backward'
 bind '"\C-q":complete'
 
+bind "set menu-complete-display-prefix on"
+bind "set show-all-if-unmodified on"
+bind "set completion-prefix-display-length 3"
+
 #exports
 export EDITOR=vim
 export PYTHONSTARTUP=~/.pystartup
