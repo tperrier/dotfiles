@@ -158,9 +158,11 @@ set statusline+=%2.c:%l/%L\ [%3.p%%]            " line X of Y [percent of file]
 
 " }}}
 " Key Mappings {{{
-" Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
-" nnoremap <silent><c-J> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
-" nnoremap <silent><c-K> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
+" Ctrl-j/k inserts blank lines.
 nnoremap <silent><c-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><c-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+" Make Q not @q apply macros
+nnoremap Q @q
+vnoremap Q :norm @q<cr>
 " }}}
