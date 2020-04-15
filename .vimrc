@@ -44,6 +44,8 @@ set noswapfile
 set autoread "auto read files with external changes
 filetype plugin on
 filetype indent on
+let mapleader = " "
+let maplocalleader = "\\"
 
 " Plugins {{{
 
