@@ -4,10 +4,11 @@ alias tmux='tmux -2'
 alias cal='cal -B1 -A1'
 alias year='cal -B7 -A7'
 alias cyear='cal -A2 `date +%Y`'
-alias ls='ls -A --color'
-alias lg='ls -Alh | grep'
-alias lh='ls -lht 2>/dev/null | head -n 7'
-alias ll='ls -lht | less'
+alias ls='ls -A --color --group-directories-first'
+alias lg='/bin/ls -lhGA --color | grep'
+alias lh='/bin/ls -lhGAt --color 2>/dev/null | head -n 7'
+alias ll='/bin/ls -lhGAt --color | less'
+alias la='/bin/ls -lhGA --color | less'
 alias less='less -r'
 alias xclip='xclip -selection c'
 alias atom='atom --disable-gpu-compositing'
@@ -35,13 +36,17 @@ PS1="\[\e[1;32m\]\u@\h:\w\[\e[m\]\n\[\e[1;34m\]\A \$>\[\e[0m\] "
 ###########################
 # Custom Functions
 ###########################
-qc () { echo $1 | bc; }
+qc () { echo "$*" | bc; }
 # npm exec function
 npmx () { $(npm bin)/$@; }
 # cd up by n
 # From: http://superuser.com/questions/449687/using-cd-to-go-up-multiple-directory-levels/449705#449705
 cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
 alias 'cd..'='cd_up'
+
+open () {
+  nohup xdg-open "$@" &> /dev/null
+}
 
 # Add ** globstar
 shopt -s globstar
